@@ -19,6 +19,9 @@ public void setup()
     rocks.add(new Asteroid());
   }
 }
+int minute = 0;
+int second = 0;
+int millisecond = 0;
 public void draw() 
 {
   background(0);
@@ -38,21 +41,61 @@ public void draw()
       rocks.remove(i);
     }
   }
+  textSize(15);
+  fill(255);
+  textAlign(LEFT);
+  text("Asteroids left: " + rocks.size(), 15, 30);
+  if (rocks.size() > 0)
+  {
+    textSize(15);
+    fill(255);
+    if (second < 10 && millisecond < 10)
+    {
+      text("Time: " + minute + ":0" + second + ".0" + millisecond, 380, 30);
+    } else if (second < 10)
+    {
+      text("Time: " + minute + ":0" + second + "." + millisecond, 380, 30);
+    } else
+    {
+      text("Time: " + minute + ":" + second + "." + millisecond, 380, 30);
+    }
+    millisecond += 1;
+    if (millisecond >= 60)
+    {
+      second += 1;
+      millisecond = 0;
+    }
+    if (second >= 60)
+    {
+      minute += 1;
+      second = 0;
+    }
+  }
   if (rocks.size() == 0)
   {
     noStroke();
     fill(80);
     rect (125, 200, 250, 100);
-    textSize(40);
+    textSize(35);
     fill((int)(Math.random()*256), 0, 0);
-    text("YOU WIN!", 158, 245); 
+    textAlign(CENTER);
+    text("YOU WIN!", 250, 235); 
     textSize(20);
     fill(255, 0, 0);
-    text("Reload page to reset!", 147, 280);
+    if (second < 10 && millisecond < 10)
+    {
+      text("Your time: " + minute + ":0" + second + ".0" + millisecond, 250, 262);
+    } else if (second < 10)
+    {
+      text("Your time: " + minute + ":0" + second + "." + millisecond, 250, 262);
+    } else
+    {
+      text("Your time: " + minute + ":" + second + "." + millisecond, 250, 262);
+    }
+    textSize(15);
+    fill(255, 0, 0);
+    text("Reload page to try again!", 250, 285);
   }
-  textSize(20);
-  fill(255);
-  text("Asteroids left: " + rocks.size(), 20, 30);
   if (keyPressed)
   {
     if (key == 'w' || key == 'W')
