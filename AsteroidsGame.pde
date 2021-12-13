@@ -51,13 +51,16 @@ public void draw()
     fill(255);
     if (second < 10 && millisecond < 10)
     {
-      text("Time: " + minute + ":0" + second + ".0" + millisecond, 380, 30);
+      text("Time: " + minute + ":0" + second + ".0" + millisecond, 400, 30);
     } else if (second < 10)
     {
-      text("Time: " + minute + ":0" + second + "." + millisecond, 380, 30);
+      text("Time: " + minute + ":0" + second + "." + millisecond, 400, 30);
+    } else if (millisecond < 10)
+    {
+      text("Time: " + minute + ":" + second + ".0" + millisecond, 400, 30);
     } else
     {
-      text("Time: " + minute + ":" + second + "." + millisecond, 380, 30);
+      text("Time: " + minute + ":" + second + "." + millisecond, 400, 30);
     }
     millisecond += 1;
     if (millisecond >= 60)
@@ -88,7 +91,10 @@ public void draw()
     } else if (second < 10)
     {
       text("Your time: " + minute + ":0" + second + "." + millisecond, 250, 262);
-    } else
+    } else if (millisecond < 10)
+    {
+      text("Your time: " + minute + ":" + second + ".0" + millisecond, 250, 262);
+    }else
     {
       text("Your time: " + minute + ":" + second + "." + millisecond, 250, 262);
     }
